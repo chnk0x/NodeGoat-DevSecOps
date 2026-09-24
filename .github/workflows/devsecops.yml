@@ -36,3 +36,11 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t nodegoat:ci .
+
+      - name: Run Trivy container scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'nodegoat:ci'
+          format: 'table'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '0'
