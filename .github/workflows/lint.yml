@@ -6,6 +6,10 @@ jobs:
     name: Node.js
     runs-on: ubuntu-latest
 
+    env:
+      COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
+      CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }}
+
     strategy:
       fail-fast: false
       matrix:
@@ -21,6 +25,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Verify required secrets are available
+        shell: bash
+        run: |
+          test -n "$COOKIE_SECRET"
+          test -n "$CRYPTO_KEY"
+          echo "Required runtime secrets are configured."
 
       - name: Run linter
         run: npx --no-install jshint@2.12.0 .
