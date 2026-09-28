@@ -22,12 +22,9 @@ function UserDAO(db) {
             firstName,
             lastName,
             benefitStartDate: this.getRandomFutureDate(),
-            password //received from request param
-            /*
-            // Fix for A2-1 - Broken Auth
-            // Stores password  in a safer way using one way encryption and salt hashing
+
+            // FIX: hash password before storing it in MongoDB
             password: bcrypt.hashSync(password, bcrypt.genSaltSync())
-            */
         };
 
         // Add email if set
@@ -39,85 +36,132 @@ function UserDAO(db) {
             if (err) {
                 return callback(err, null);
             }
+
             console.log(typeof(id));
 
             user._id = id;
-            usersCol.insert(user, (err, result) => !err ? callback(null, result.ops[0]) : callback(err, null));
+
+            usersCol.insert(
+                user,
+                (err, result) =>
+                    !err
+                        ? callback(null, result.ops[0])
+                        : callback(err, null)
+            );
         });
     };
 
     this.getRandomFutureDate = () => {
         const today = new Date();
-        const day = (Math.floor(Math.random() * 10) + today.getDay()) % 29;
-        const month = (Math.floor(Math.random() * 10) + today.getMonth()) % 12;
-        const year = Math.ceil(Math.random() * 30) + today.getFullYear();
+
+        const day =
+            (Math.floor(Math.random() * 10) + today.getDay()) % 29;
+
+        const month =
+            (Math.floor(Math.random() * 10) + today.getMonth()) % 12;
+
+        const year =
+            Math.ceil(Math.random() * 30) + today.getFullYear();
+
         return `${year}-${("0" + month).slice(-2)}-${("0" + day).slice(-2)}`;
     };
 
     this.validateLogin = (userName, password, callback) => {
 
-        // Helper function to compare passwords
-        const comparePassword = (fromDB, fromUser) => {
-            return fromDB === fromUser;
-            /*
-            // Fix for A2-Broken Auth
-            // compares decrypted password stored in this.addUser()
-            return bcrypt.compareSync(fromDB, fromUser);
-            */
+        // FIX: compare entered password with bcrypt hash from database
+        const comparePassword = (passwordFromUser, hashFromDB) => {
+            return bcrypt.compareSync(passwordFromUser, hashFromDB);
         };
 
-        // Callback to pass to MongoDB that validates a user document
+        // Callback to validate the user document returned from MongoDB
         const validateUserDoc = (err, user) => {
 
-            if (err) return callback(err, null);
+            if (err) {
+                return callback(err, null);
+            }
 
             if (user) {
+
                 if (comparePassword(password, user.password)) {
-                    callback(null, user);
+
+                    return callback(null, user);
+
                 } else {
-                    const invalidPasswordError = new Error("Invalid password");
-                    // Set an extra field so we can distinguish this from a db error
+
+                    const invalidPasswordError =
+                        new Error("Invalid password");
+
+                    // Extra field to distinguish this from a database error
                     invalidPasswordError.invalidPassword = true;
-                    callback(invalidPasswordError, null);
+
+                    return callback(invalidPasswordError, null);
                 }
+
             } else {
-                const noSuchUserError = new Error("User: " + user + " does not exist");
-                // Set an extra field so we can distinguish this from a db error
+
+                const noSuchUserError =
+                    new Error("User: " + user + " does not exist");
+
+                // Extra field to distinguish this from a database error
                 noSuchUserError.noSuchUser = true;
-                callback(noSuchUserError, null);
+
+                return callback(noSuchUserError, null);
             }
         };
 
-        usersCol.findOne({
-            userName: userName
-        }, validateUserDoc);
+        usersCol.findOne(
+            {
+                userName: userName
+            },
+            validateUserDoc
+        );
     };
 
-    // This is the good one, see the next function
+    // Get a user by ID
     this.getUserById = (userId, callback) => {
-        usersCol.findOne({
-            _id: parseInt(userId)
-        }, callback);
+
+        usersCol.findOne(
+            {
+                _id: parseInt(userId)
+            },
+            callback
+        );
     };
 
+    // Get a user by username
     this.getUserByUserName = (userName, callback) => {
-        usersCol.findOne({
-            userName: userName
-        }, callback);
+
+        usersCol.findOne(
+            {
+                userName: userName
+            },
+            callback
+        );
     };
 
     this.getNextSequence = (name, callback) => {
-        db.collection("counters").findAndModify({
+
+        db.collection("counters").findAndModify(
+            {
                 _id: name
-            }, [], {
+            },
+            [],
+            {
                 $inc: {
                     seq: 1
                 }
-            }, {
+            },
+            {
                 new: true
             },
-            (err, data) =>  err ? callback(err, null) : callback(null, data.value.seq));
+            (err, data) =>
+                err
+                    ? callback(err, null)
+                    : callback(null, data.value.seq)
+        );
     };
 }
 
-module.exports = { UserDAO };
+module.exports = {
+    UserDAO
+};
