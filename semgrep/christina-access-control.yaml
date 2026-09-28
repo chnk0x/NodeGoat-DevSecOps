@@ -1,0 +1,25 @@
+rules:
+  - id: nodegoat.broken-access-control.benefits-get-missing-isadmin
+    message: Benefits GET route is authenticated but missing admin authorization.
+    severity: ERROR
+    languages:
+      - javascript
+    patterns:
+      - pattern: app.get("/benefits", isLoggedIn, $HANDLER)
+      - pattern-not: app.get("/benefits", isLoggedIn, isAdmin, $HANDLER)
+
+  - id: nodegoat.broken-access-control.benefits-post-missing-isadmin
+    message: Benefits POST route is authenticated but missing admin authorization.
+    severity: ERROR
+    languages:
+      - javascript
+    patterns:
+      - pattern: app.post("/benefits", isLoggedIn, $HANDLER)
+      - pattern-not: app.post("/benefits", isLoggedIn, isAdmin, $HANDLER)
+
+  - id: nodegoat.idor.userid-from-url
+    message: User ID is taken from request parameters, which may allow IDOR if ownership is not checked.
+    severity: ERROR
+    languages:
+      - javascript
+    pattern: const { userId } = req.params
