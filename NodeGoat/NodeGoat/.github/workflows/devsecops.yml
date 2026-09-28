@@ -23,5 +23,36 @@ jobs:
       - name: Run tests
         run: npm test
 
+      # Gate 1 - SAST
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Semgrep
+        run: python -m pip install semgrep
+
+      - name: Run Semgrep SAST
+        run: semgrep scan --config auto .
+
+      # Gate 2 - Dependency scanning
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+
+      # Gate 3 - Secret scanning
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+      # Build container
       - name: Build Docker image
         run: docker build -t nodegoat:ci .
+
+      # Gate 4 - Container scanning
+      - name: Run Trivy container scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'nodegoat:ci'
+          format: 'table'
+          exit-code: '1'
+          severity: 'HIGH,CRITICAL'
+          ignore-unfixed: true
