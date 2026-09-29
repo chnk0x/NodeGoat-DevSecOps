@@ -45,6 +45,8 @@ jobs:
       # Gate 3 - Secret scanning
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Build hardened production container
       - name: Build Docker image
