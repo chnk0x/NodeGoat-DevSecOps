@@ -45,11 +45,6 @@ jobs:
       # Gate 3 - Secret scanning
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
-        env:
-          GITLEAKS_ENABLE_COMMENTS: false
-          GITLEAKS_ENABLE_SUMMARY: true
-        with:
-          args: --baseline-path gitleaks-baseline.json
 
       # Build container
       - name: Build Docker image
