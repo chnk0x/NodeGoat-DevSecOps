@@ -1,6 +1,0 @@
-89e3ead3ff2cf4e6a2fa4eacf7ea91f183de1650:NodeGoat/NodeGoat/artifacts/cert/server.key:private-key:1
-89e3ead3ff2cf4e6a2fa4eacf7ea91f183de1650:NodeGoat/NodeGoat/config/env/development.js:generic-api-key:6
-89e3ead3ff2cf4e6a2fa4eacf7ea91f183de1650:NodeGoat/NodeGoat/config/env/test.js:generic-api-key:6
-7fa4c563494c1faf788a391de9ed32a06cf491c4:NodeGoat/NodeGoat/config/env/development.js:generic-api-key:6
-7fa4c563494c1faf788a391de9ed32a06cf491c4:NodeGoat/NodeGoat/artifacts/cert/server.key:private-key:1
-7fa4c563494c1faf788a391de9ed32a06cf491c4:NodeGoat/NodeGoat/config/env/test.js:generic-api-key:6
