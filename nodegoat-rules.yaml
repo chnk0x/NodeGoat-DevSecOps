@@ -1,0 +1,15 @@
+rules:
+  - id: nodegoat-nosql-injection-dynamic-where
+    languages: [javascript]
+    severity: ERROR
+    message: >
+      NoSQL injection: a MongoDB $where clause is built from a template
+      literal. User-controlled input concatenated into $where is executed
+      as server-side JavaScript, allowing data disclosure, DoS, or RCE.
+      Use native query operators ($gt, $lt, $eq) with validated input.
+    metadata:
+      cwe: "CWE-943"
+      owasp: "A03:2021 - Injection"
+    patterns:
+      - pattern: |
+          { $where: `...` }
