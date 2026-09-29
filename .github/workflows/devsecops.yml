@@ -36,6 +36,9 @@ jobs:
         run: semgrep scan --config auto .
 
       # Gate 2 - Dependency scanning
+      - name: Set up npm for security audit
+        run: npm install -g npm@8.19.4
+
       - name: Run npm audit security gate
         run: node scripts/audit-gate.js
 
