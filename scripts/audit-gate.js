@@ -6,7 +6,7 @@ const BASELINE_CRITICAL = 10;
 let output;
 
 try {
-  output = execSync("npm audit --omit=dev --json", {
+  output = execSync("npm audit --production --json", {
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"]
   });
