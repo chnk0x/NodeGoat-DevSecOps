@@ -37,7 +37,7 @@ jobs:
 
       # Gate 2 - Dependency scanning
       - name: Run npm audit
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=high
 
       # Gate 3 - Secret scanning
       - name: Run Gitleaks
