@@ -36,8 +36,8 @@ jobs:
         run: semgrep scan --config auto .
 
       # Gate 2 - Dependency scanning
-      - name: Run npm audit
-        run: npm audit --omit=dev --audit-level=high
+      - name: Run npm audit security gate
+        run: node scripts/audit-gate.js
 
       # Gate 3 - Secret scanning
       - name: Run Gitleaks
