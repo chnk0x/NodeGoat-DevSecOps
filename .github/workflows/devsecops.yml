@@ -52,7 +52,7 @@ jobs:
 
       # Gate 4 - Container scanning
       - name: Run Trivy container scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'nodegoat:ci'
           format: 'table'
