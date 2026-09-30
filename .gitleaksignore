@@ -1,0 +1,11 @@
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:private-key:9
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:private-key:10
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:private-key:72
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:private-key:73
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:generic-api-key:31
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:generic-api-key:52
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:generic-api-key:94
+fc5eb3a6e9d2396142a8e603f2af63ba67222015:gitleaks-baseline.json:generic-api-key:115
+58bb0f82650b1ea85baff0077d9deab745243da1:NodeGoat/NodeGoat/artifacts/cert/server.key:private-key:1
+58bb0f82650b1ea85baff0077d9deab745243da1:NodeGoat/NodeGoat/config/env/development.js:generic-api-key:6
+58bb0f82650b1ea85baff0077d9deab745243da1:NodeGoat/NodeGoat/config/env/test.js:generic-api-key:6
