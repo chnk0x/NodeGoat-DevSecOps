@@ -43,10 +43,7 @@ function UserDAO(db) {
 
             usersCol.insert(
                 user,
-                (err, result) =>
-                    !err
-                        ? callback(null, result.ops[0])
-                        : callback(err, null)
+                (err, result) => !err ? callback(null, result.ops[0]) : callback(err, null)
             );
         });
     };
@@ -154,10 +151,7 @@ function UserDAO(db) {
             {
                 new: true
             },
-            (err, data) =>
-                err
-                    ? callback(err, null)
-                    : callback(null, data.value.seq)
+            (err, data) => err ? callback(err, null) : callback(null, data.value.seq)
         );
     };
 }

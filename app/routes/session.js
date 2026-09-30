@@ -98,7 +98,7 @@ function SessionHandler(db) {
                
                 req.session.userId = user._id;
              res.redirect(user.isAdmin ? "/benefits" : "/dashboard");
-            })
+            });
         });
     };
 
