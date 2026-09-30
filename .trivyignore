@@ -1,0 +1,16 @@
+# Accepted legacy NodeGoat vulnerabilities.
+# These dependencies are retained for the OWASP NodeGoat training application.
+# Trivy remains configured with exit-code 1 so new HIGH/CRITICAL findings fail CI.
+
+CVE-2024-4068
+CVE-2020-7610
+CVE-2017-20165
+CVE-2017-16114
+CVE-2022-21680
+CVE-2022-21681
+CVE-2026-26996
+CVE-2026-27903
+CVE-2026-27904
+CVE-2021-44906
+GHSA-mh5c-679w-hh4r
+CVE-2022-21803
