@@ -1476,11 +1476,8 @@ The modifications in this repository were created as part of an **academic DevSe
 
 </div>
 
-
-
 <img src="https://capsule-render.vercel.app/api?type=rect&amp;height=3&amp;color=0:7c3aed,50:0e7490,100:10b981&amp;section=header" width="100%" alt="" />
 
-**Danidu** &nbsp;·&nbsp; **Praween** &nbsp;·&nbsp; **Chanuka** &nbsp;·&nbsp; **Christina**
 
 <sub>🛡️ Secure by design &nbsp;·&nbsp; 🔍 Continuously tested &nbsp;·&nbsp; ✅ Verified by pipeline &nbsp;·&nbsp; 🚀 Hardened from code to container</sub>
 
