@@ -7,6 +7,10 @@ jobs:
     name: Node.js
     runs-on: ubuntu-latest
 
+    env:
+      COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
+      CRYPTO_KEY: ${{ secrets.CRYPTO_KEY }}
+
     strategy:
       fail-fast: false
       matrix:

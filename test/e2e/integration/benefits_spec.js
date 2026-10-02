@@ -22,11 +22,11 @@ describe("/login behaviour", () => {
     cy.url().should("include", "benefits");
   });
 
-  it("Should be accesible if the user is not an admin", () => {
-    cy.userSignIn();
-    cy.visitPage("/benefits");
-    cy.url().should("include", "benefits");
-  });
+  it("Should block access if the user is not an admin", () => {
+  cy.userSignIn();
+  cy.visitPage("/benefits");
+  cy.url().should("include", "login");
+});
 
   it("Should be a table with rows", () => {
     cy.adminSignIn();
