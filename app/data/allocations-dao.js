@@ -74,9 +74,16 @@ const AllocationsDAO = function(db){
                 }
                 throw `The user supplied threshold: ${parsedThreshold} was not valid.`;
                 */
-                return {
-                    $where: `this.userId == ${parsedUserId} && this.stocks > '${threshold}'`
-                };
+                    // FIX (CWE-943 NoSQL Injection): validate input, then use a native BSON
+    // query instead of $where. No user input ever reaches executable JS.
+    if (!/^\d{1,2}$/.test(String(threshold).trim())) {
+        return callback(new Error("Invalid threshold value supplied"), null);
+    }
+    const parsedThreshold = parseInt(threshold, 10);
+    if (!Number.isInteger(parsedThreshold) || parsedThreshold < 0 || parsedThreshold > 99) {
+        return callback(new Error("Invalid threshold value supplied"), null);
+    }
+    return { userId: parsedUserId, stocks: { $gt: parsedThreshold } };
             }
             return {
                 userId: parsedUserId
