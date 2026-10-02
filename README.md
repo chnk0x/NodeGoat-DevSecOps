@@ -1476,8 +1476,6 @@ The modifications in this repository were created as part of an **academic DevSe
 
 </div>
 
-> [!IMPORTANT]
-> 🏛️ Proudly developed at **SLIIT — Sri Lanka Institute of Information Technology**, Malabe Campus, for the **IE3142 – DevOps Security** module.
 
 ### <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Globe%20Showing%20Asia-Australia.png" width="24" alt="🌏" /> Where it was built
 
@@ -2327,7 +2325,7 @@ endsolid nodegoat_devsecops_shield
 
 **Danidu** &nbsp;·&nbsp; **Praween** &nbsp;·&nbsp; **Chanuka** &nbsp;·&nbsp; **Christina**
 
-<sub>🛡️ Secure by design &nbsp;·&nbsp; ✅ Verified by pipeline &nbsp;·&nbsp; 🎓 Built at <b>SLIIT — Sri Lanka Institute of Information Technology</b> for IE3142 – DevOps Security · 2026</sub>
+<sub>🛡️ Secure by design &nbsp;·&nbsp; 🔍 Continuously tested &nbsp;·&nbsp; ✅ Verified by pipeline &nbsp;·&nbsp; 🚀 Hardened from code to container</sub>
 
 <a href="#readme-top"><img src="https://img.shields.io/badge/back%20to%20top-%E2%86%91-0e7490?style=flat-square" alt="back to top" /></a>
 
